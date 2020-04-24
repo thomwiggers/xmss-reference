@@ -39,6 +39,9 @@ test: $(TESTS:=.exec)
 
 .PHONY: clean test
 
+check_params: check_params.c $(SOURCES_FAST) $(HEADERS_FAST)
+	$(CC) -o $@ $(CFLAGS) $^ $(LDLIBS)
+
 test/%.exec: test/%
 	@$<
 

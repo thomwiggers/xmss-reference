@@ -39,4 +39,12 @@ int xmssmt_core_sign_open(const xmss_params *params,
                           unsigned char *m, unsigned long long *mlen,
                           const unsigned char *sm, unsigned long long smlen,
                           const unsigned char *pk);
+
+
+int xmss_core_sign_verify(
+    const xmss_params *params,
+    const unsigned char *m, unsigned long long mlen,
+    const unsigned char *sig, const unsigned char *pk);
+
+
 #endif

@@ -485,6 +485,7 @@ int xmss_xmssmt_initialize_params(xmss_params *params)
         /* In XMSS^MT, round index_bytes up to nearest byte. */
         params->index_bytes = (params->full_height + 7) / 8;
     }
+
     params->sig_bytes = (params->index_bytes + params->n
                          + params->d * params->wots_sig_bytes
                          + params->full_height * params->n);

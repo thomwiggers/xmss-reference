@@ -135,6 +135,19 @@ void get_seed(const xmss_params *params, unsigned char *seed,
     prf(params, seed, bytes, sk_seed);
 }
 
+int xmss_core_sign_verify(
+    const xmss_params *params,
+    const unsigned char *m, unsigned long long mlen,
+    const unsigned char *sig, const unsigned char *pk) {
+
+    unsigned char _m[mlen + params->sig_bytes];
+    unsigned long long _mlen;
+    unsigned char sm[mlen + params->sig_bytes];
+    memcpy(sm, sig, params->sig_bytes);
+    memcpy(sm + params->sig_bytes, m, mlen);
+    return xmss_core_sign_open(params, _m, &_mlen, sm, mlen + params->sig_bytes, pk);
+}
+
 /**
  * Verifies a given message signature pair under a given public key.
  * Note that this assumes a pk without an OID, i.e. [root || PUB_SEED]
