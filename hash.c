@@ -25,7 +25,9 @@ static int core_hash(const xmss_params *params,
                      unsigned char *out,
                      const unsigned char *in, unsigned long long inlen)
 {
-    if (params->n == 32 && params->func == XMSS_SHA2) {
+    if (params->n == 16 && params->func == XMSS_SHAKE) {
+        shake128(out, 16, in, inlen);
+    } else if (params->n == 32 && params->func == XMSS_SHA2) {
         SHA256(in, inlen, out);
     }
     else if (params->n == 32 && params->func == XMSS_SHAKE) {

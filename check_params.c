@@ -5,19 +5,14 @@
 
 int main(void) {
     xmss_params params;
-    uint32_t oid = 0;
+    params.func = 1; /* 1 = SHAKE */
+    params.n = 16;  /* Width of hash */
+    params.wots_w = 256;  /* Winternitz parameter */
+    params.full_height = 20,  /* Tree height, log number of signatures */
 
-    xmss_str_to_oid(&oid, "XMSS-SHA2_10_256");
-    xmss_parse_oid(&params, oid);
-/*
-    params.func = 1;
-    params.n = 32;
-    params.d = 1;
-    params.wots_w = 16;
-    params.full_height = 10,
-    params.bds_k = 0;
+    params.d = 1;   /* > 1 implies XMSS^MT */
+    params.bds_k = 0; /* Doesn't influence sizes */
     xmss_xmssmt_initialize_params(&params);
-*/
 
 #define printparam(param) \
     printf(#param ": %d,\n", params.param)
