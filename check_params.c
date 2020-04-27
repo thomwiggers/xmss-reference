@@ -8,7 +8,7 @@ int main(void) {
     params.func = 1; /* 1 = SHAKE */
     params.n = 16;  /* Width of hash */
     params.wots_w = 256;  /* Winternitz parameter */
-    params.full_height = 16,  /* Tree height, log number of signatures */
+    params.full_height = 24,  /* Tree height, log number of signatures */
 
     params.d = 2;   /* > 1 implies XMSS^MT */
     params.bds_k = 0; /* Doesn't influence sizes */
@@ -35,7 +35,7 @@ int main(void) {
     printparam(pk_bytes);
     printf("    sk_bytes: %llu,\n", params.sk_bytes);
     printparam(bds_k);
-    printf("};");
+    printf("};\n");
 
     return 0;
 }

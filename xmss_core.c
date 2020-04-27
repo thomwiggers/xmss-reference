@@ -170,6 +170,17 @@ int xmss_core_sign_signature(
     return result;
 }
 
+int xmssmt_core_sign_signature(
+    const xmss_params *params,
+    unsigned char* sk, unsigned char *sig,
+    const unsigned char *m, unsigned long long mlen) {
+    unsigned char sm[mlen + params->sig_bytes];
+    unsigned long long smlen;
+    int result = xmssmt_core_sign(params, sk, sm, &smlen, m, mlen);
+    memcpy(sig, sm, params->sig_bytes);
+    return result;
+}
+
 /**
  * Signs a message. Returns an array containing the signature followed by the
  * message and an updated secret key.
